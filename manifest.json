@@ -1,0 +1,39 @@
+{
+  "manifest_version": 3,
+  "name": "Rack Manufaktur – Warenkorb",
+  "version": "0.1.0",
+  "description": "Reads the orders per supplier from Rack Manufaktur and adds the items to the carts at Thomann, ProCase and Adam Hall. Stops at the cart.",
+  "permissions": ["storage", "tabs"],
+  "host_permissions": [
+    "https://td-media.eu/rackwerk/*",
+    "http://localhost/*",
+    "http://127.0.0.1/*",
+    "https://www.thomann.de/*",
+    "https://www.procaseshop.de/*",
+    "https://www.adamhall.com/*"
+  ],
+  "background": { "service_worker": "background.js" },
+  "action": { "default_popup": "popup.html", "default_title": "Rack Manufaktur – Warenkorb" },
+  "content_scripts": [
+    {
+      "matches": ["https://td-media.eu/rackwerk/*", "http://localhost/*", "http://127.0.0.1/*"],
+      "js": ["content/rackwerk.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["https://www.thomann.de/*"],
+      "js": ["content/shop-common.js", "content/thomann.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["https://www.procaseshop.de/*"],
+      "js": ["content/shop-common.js", "content/procase.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["https://www.adamhall.com/shop/*"],
+      "js": ["content/shop-common.js", "content/adamhall.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

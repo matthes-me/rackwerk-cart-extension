@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Rack Manufaktur – Warenkorb</title>
+<style>
+  :root { --bg: #fff; --fg: #1f2328; --mute: #656d76; --line: #d0d7de; --acc: #c2410c; --ok: #1a7f37; --bad: #cf222e; --warn: #9a6700; }
+  @media (prefers-color-scheme: dark) { :root { --bg: #161b22; --fg: #e6edf3; --mute: #8d96a0; --line: #30363d; --acc: #fb923c; --ok: #3fb950; --bad: #f85149; --warn: #d29922; } }
+  body { margin: 0; width: 380px; background: var(--bg); color: var(--fg); font: 13px/1.4 system-ui, sans-serif; }
+  header { padding: 12px 14px 8px; border-bottom: 1px solid var(--line); }
+  h1 { margin: 0; font-size: 14px; }
+  .mute { color: var(--mute); font-size: 12px; }
+  section { padding: 10px 14px; border-bottom: 1px solid var(--line); }
+  .row { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+  .shop { font-weight: 600; }
+  button { margin-top: 6px; padding: 6px 10px; border: 0; border-radius: 6px; background: var(--acc); color: #fff; font: inherit; font-weight: 600; cursor: pointer; }
+  button.ghost { background: transparent; color: var(--fg); border: 1px solid var(--line); font-weight: 400; }
+  button:disabled { opacity: .5; cursor: default; }
+  ul { margin: 6px 0 0; padding: 0; list-style: none; }
+  li { padding: 3px 0; border-top: 1px dashed var(--line); }
+  .st { font-size: 11px; font-weight: 600; }
+  .added { color: var(--ok); } .not_found, .failed, .ambiguous { color: var(--bad); } .login_required, .unknown, .working, .pending { color: var(--warn); }
+  .others li { color: var(--mute); }
+  a { color: inherit; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Rack Manufaktur → Warenkorb</h1>
+  <div class="mute" id="src">Keine Bestellung gelesen. Öffne Rack Manufaktur in einem Tab.</div>
+  <button class="ghost" id="reload">Neu einlesen</button>
+</header>
+<div id="shops"></div>
+<section id="job" hidden></section>
+<section class="others" id="others" hidden></section>
+<script src="shops.js"></script>
+<script src="popup.js"></script>
+</body>
+</html>
